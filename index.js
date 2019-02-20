@@ -41,12 +41,11 @@ server.get('/api/cohorts/:id', async (req, res) => {
 });
 // all students for the cohort with the specified id
 server.get('/api/cohorts/:id/students', async (req, res) => {
-    // get the cohorts from the database
     try {
-      const cohort = await db('cohorts')
+      const student = await db('students')
         .where({ id: req.params.id })
         .first();
-      res.status(200).json(cohort);
+      res.status(200).json(student);
     } catch (error) {
       res.status(500).json(error);
     }
