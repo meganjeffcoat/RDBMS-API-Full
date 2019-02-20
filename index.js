@@ -39,6 +39,18 @@ server.get('/api/cohorts/:id', async (req, res) => {
     res.status(500).json(error);
   }
 });
+// all students for the cohort with the specified id
+server.get('/api/cohorts/:id/students', async (req, res) => {
+    // get the cohorts from the database
+    try {
+      const cohort = await db('cohorts')
+        .where({ id: req.params.id })
+        .first();
+      res.status(200).json(cohort);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  });
 
 const errors = {
   '19': 'Another record with that value exists',
